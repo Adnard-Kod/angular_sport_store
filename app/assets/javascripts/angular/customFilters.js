@@ -1,3 +1,4 @@
+/// <reference path="../angular.js" />
 angular.module("customFilters", [])
 .filter("unique", function () {
     return function (data, propertyName) {

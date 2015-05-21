@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require angular
+//= require angular/sportStoreController
+//= require angular/customFilters
 //= require_tree .

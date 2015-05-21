@@ -8,11 +8,18 @@
     <a  ng-repeat="item in products | orderBy:'category' | unique:'category'" ng-click="selectCategory(item)" ng-class="getCategoryClass(item)" class="btn btn-block btn-default btn-lg"> Category #{{ item }} </a>
   </div>
   <div class="col-xs-8">
-    <div class="well" ng-repeat="item in products | filter:categoryFilterFn">
+    <div class="well" ng-repeat="item in products | filter:categoryFilterFn | range:selectedPage:pageSize">
       <h3><strong>{{ item.name }}</strong></h3>
       <span class="pull-right label label-primary">$ {{ item.price | orderBy: 'price'}}</span>
       <span class="lead">{{ item.description }}</span>
       <span class="lead">{{ item.category }}</span>
     </div>
+  </div>
+  <div class="btn-group">
+      <a ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize"
+         ng-click="selectPage($index + 1)" class="btn btn-default"
+         ng-class="getPageClass($index + 1)">
+          {{ $index + 1 }}
+      </a>
   </div>
 </div>
