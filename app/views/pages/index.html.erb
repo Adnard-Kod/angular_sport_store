@@ -1,15 +1,18 @@
 <div class="navbar navbar-inverse">
     <a class="navbar-brand" href="#">SPORTS STORE</a>
 </div>
-<div class="panel panel-default row">
+<div class="panel panel-default row" ng-controller="productListCtrl">
   <div class="col-xs-3">
-
+    <a ng-click="selectCategory()"
+       class="btn btn-block btn-default btn-lg">Home</a>
+    <a  ng-repeat="item in products | orderBy:'category' | unique:'category'" ng-click="selectCategory(item)" ng-class="getCategoryClass(item)" class="btn btn-block btn-default btn-lg"> Category #{{ item }} </a>
   </div>
   <div class="col-xs-8">
-    <div class="well" ng-repeat="item in products">
-      <h3><strong>{{item.name}}</strong></h3>
-      <span class="pull-right label label-primary">{{item.price | currency}}</span>
-      <span class="lead">{{item.description}}</span>
+    <div class="well" ng-repeat="item in products | filter:categoryFilterFn">
+      <h3><strong>{{ item.name }}</strong></h3>
+      <span class="pull-right label label-primary">$ {{ item.price | orderBy: 'price'}}</span>
+      <span class="lead">{{ item.description }}</span>
+      <span class="lead">{{ item.category }}</span>
     </div>
   </div>
 </div>
